@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiles Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Tiles Calculator</h1>
+
+        <!-- Wall Tiles Calculation -->
+        <div class="calculator-section">
+            <h2>Wall Tiles Calculation</h2>
+            <label for="wallLength">Length of Wall (in ft):</label>
+            <input type="number" id="wallLength" placeholder="Enter length" required>
+            <label for="wallHeight">Height of Wall (in ft):</label>
+            <input type="number" id="wallHeight" placeholder="Enter height" required>
+            <label for="wallTileSize">Select Tile Size:</label>
+            <select id="wallTileSize">
+                <option value="12">12x12 (1 box = 10 tiles)</option>
+                <option value="16">16x16 (1 box = 6 tiles)</option>
+                <option value="24">24x24 (1 box = 4 tiles)</option>
+            </select>
+            <button onclick="calculateWallTiles()">Calculate Wall Tiles</button>
+            <div id="wallResults"></div>
+        </div>
+
+        <!-- Floor Tiles Calculation -->
+        <div class="calculator-section">
+            <h2>Floor Tiles Calculation</h2>
+            <label for="floorLength">Length of Floor (in ft):</label>
+            <input type="number" id="floorLength" placeholder="Enter length" required>
+            <label for="floorWidth">Width of Floor (in ft):</label>
+            <input type="number" id="floorWidth" placeholder="Enter width" required>
+            <label for="floorTileSize">Select Tile Size:</label>
+            <select id="floorTileSize">
+                <option value="12">12x12 (1 box = 10 tiles)</option>
+                <option value="16">16x16 (1 box = 6 tiles)</option>
+                <option value="24">24x24 (1 box = 4 tiles)</option>
+            </select>
+            <button onclick="calculateFloorTiles()">Calculate Floor Tiles</button>
+            <div id="floorResults"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
