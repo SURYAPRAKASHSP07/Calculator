@@ -1,43 +1,23 @@
-function calculateWallTiles() {
-    const length = parseFloat(document.getElementById('wallLength').value);
-    const height = parseFloat(document.getElementById('wallHeight').value);
-    const tileSize = parseInt(document.getElementById('wallTileSize').value);
-    const tilesPerBox = (tileSize === 12) ? 10 : (tileSize === 16) ? 6 : 4;
+function calculate() {
+  const length = parseFloat(document.getElementById('length').value) || 0;
+  const height = parseFloat(document.getElementById('height').value) || 0;
+  const tileLength = parseFloat(document.getElementById('tileLength').value) || 0;
+  const tileHeight = parseFloat(document.getElementById('tileHeight').value) || 0;
+  const piecesInBox = parseFloat(document.getElementById('piecesInBox').value) || 1;
 
-    if (isNaN(length) || isNaN(height)) {
-        alert("Please enter valid values for length and height.");
-        return;
-    }
+  const sqft = length * height;
+  document.getElementById('sqft').innerText = sqft.toFixed(2);
 
-    const totalSqFt = length * height;
-    const totalTiles = totalSqFt / (tileSize * tileSize / 144);
-    const totalBoxes = Math.ceil(totalTiles / tilesPerBox);
+  if (tileLength > 0 && tileHeight > 0) {
+    const ltilePieces = Math.ceil(length / tileLength);
+    const htilePieces = Math.ceil(height / tileHeight);
+    const totalPieces = ltilePieces * htilePieces;
 
-    document.getElementById('wallResults').innerHTML = `
-        Total Area: ${totalSqFt.toFixed(2)} SqFt<br>
-        Total Tiles: ${Math.ceil(totalTiles)}<br>
-        Total Boxes of Tiles: ${totalBoxes}
-    `;
-}
+    document.getElementById('ltilePieces').innerText = ltilePieces;
+    document.getElementById('htilePieces').innerText = htilePieces;
+    document.getElementById('totalPieces').innerText = totalPieces;
 
-function calculateFloorTiles() {
-    const length = parseFloat(document.getElementById('floorLength').value);
-    const width = parseFloat(document.getElementById('floorWidth').value);
-    const tileSize = parseInt(document.getElementById('floorTileSize').value);
-    const tilesPerBox = (tileSize === 12) ? 10 : (tileSize === 16) ? 6 : 4;
-
-    if (isNaN(length) || isNaN(width)) {
-        alert("Please enter valid values for length and width.");
-        return;
-    }
-
-    const totalSqFt = length * width;
-    const totalTiles = totalSqFt / (tileSize * tileSize / 144);
-    const totalBoxes = Math.ceil(totalTiles / tilesPerBox);
-
-    document.getElementById('floorResults').innerHTML = `
-        Total Area: ${totalSqFt.toFixed(2)} SqFt<br>
-        Total Tiles: ${Math.ceil(totalTiles)}<br>
-        Total Boxes of Tiles: ${totalBoxes}
-    `;
+    const totalBoxes = Math.ceil(totalPieces / piecesInBox);
+    document.getElementById('totalBoxes').innerText = totalBoxes;
+  }
 }
